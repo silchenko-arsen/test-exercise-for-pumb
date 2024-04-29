@@ -1,0 +1,45 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_animals_table
+      author: silchenko_arsen
+      changes:
+        - createTable:
+            tableName: animals
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: type
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: gender
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: weight
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: cost
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: category
+                  type: tinyint
+                  constraints:
+                    nullable: false
+
