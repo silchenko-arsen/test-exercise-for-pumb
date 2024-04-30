@@ -5,7 +5,6 @@ import com.arsen.silchenko.testexerciseforpumb.exception.XmlParsingException;
 import com.arsen.silchenko.testexerciseforpumb.mapper.AnimalMapper;
 import com.arsen.silchenko.testexerciseforpumb.model.Animal;
 import com.arsen.silchenko.testexerciseforpumb.repository.AnimalRepository;
-import com.arsen.silchenko.testexerciseforpumb.represantation.AnimalCSV;
 import com.arsen.silchenko.testexerciseforpumb.represantation.AnimalXML;
 import com.arsen.silchenko.testexerciseforpumb.represantation.AnimalsXML;
 import com.arsen.silchenko.testexerciseforpumb.service.FileService;
@@ -16,19 +15,16 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 
 @Service
+@RequiredArgsConstructor
 public class FileServiceXMLImpl implements FileService {
     private final AnimalMapper animalMapper;
     private final AnimalRepository animalRepository;
-
-    public FileServiceXMLImpl(AnimalMapper animalMapper, AnimalRepository animalRepository) {
-        this.animalMapper = animalMapper;
-        this.animalRepository = animalRepository;
-    }
 
     @Override
     public List<AnimalDto> upload(MultipartFile file) {

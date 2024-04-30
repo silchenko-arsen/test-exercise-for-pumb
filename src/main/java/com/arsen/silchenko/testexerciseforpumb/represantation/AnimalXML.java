@@ -4,9 +4,13 @@ import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @XmlRootElement(name = "animal")
 @XmlAccessorType(XmlAccessType.FIELD)
+@Getter
+@NoArgsConstructor
 public class AnimalXML {
     @XmlElement(name = "name")
     private String name;
@@ -22,26 +26,5 @@ public class AnimalXML {
 
     @XmlElement(name = "cost")
     private Integer cost;
-
-    public String getName() {
-        return name;
-    }
-
-
-    public String getType() {
-        return type;
-    }
-
-    public String getSex() {
-        return sex;
-    }
-
-    public Integer getWeight() {
-        return weight;
-    }
-
-    public Integer getCost() {
-        return cost;
-    }
 }
 

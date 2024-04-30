@@ -91,4 +91,50 @@ class FileControllerIntegrationTest {
                 .getResponse().getContentAsString(), AnimalDto[].class);
         assertEquals(2, actual.length);
     }
+
+    @Test
+    public void testUploadFileWithCsvInvalidData() throws Exception {
+        String cxvContent = """
+                Name,Type,Sex,Weight,Cost
+                Buddy,,female,41,78
+                Duke,cat,male,33,108
+                """;
+        MockMultipartFile multipartFile = new MockMultipartFile("file", "file.csv", "text/csv", cxvContent.getBytes());
+        MvcResult mvcResult = mockMvc.perform(multipart("/api/files/uploads")
+                        .file(multipartFile))
+                .andExpect(status().isOk())
+                .andReturn();
+        AnimalDto[] actual = objectMapper.readValue(mvcResult
+                .getResponse().getContentAsString(), AnimalDto[].class);
+        assertEquals(1, actual.length);
+    }
+
+    @Test
+    public void testUploadFileWithXmlInvalidData() throws Exception {
+        String xmlContent = """
+                <?xml version="1.0" encoding="UTF-8"?>
+                <animals>
+                    <animal>
+                        <name>Buddy</name>
+                        <sex>female</sex>
+                        <weight>41</weight>
+                        <cost>78</cost>
+                    </animal>
+                    <animal>
+                        <name>Duke</name>
+                        <type>cat</type>
+                        <sex>male</sex>
+                        <weight>33</weight>
+                        <cost>108</cost>
+                    </animal>
+                </animals>""";
+        MockMultipartFile file = new MockMultipartFile("file", "file.xml", "application/xml", xmlContent.getBytes());
+        MvcResult mvcResult = mockMvc.perform(multipart("/api/files/uploads")
+                        .file(file))
+                .andExpect(status().isOk())
+                .andReturn();
+        AnimalDto[] actual = objectMapper.readValue(mvcResult
+                .getResponse().getContentAsString(), AnimalDto[].class);
+        assertEquals(1, actual.length);
+    }
 }

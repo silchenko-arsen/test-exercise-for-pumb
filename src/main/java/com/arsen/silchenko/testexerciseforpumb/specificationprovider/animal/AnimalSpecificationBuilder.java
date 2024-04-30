@@ -4,21 +4,17 @@ import com.arsen.silchenko.testexerciseforpumb.dto.AnimalSearchParametersDto;
 import com.arsen.silchenko.testexerciseforpumb.model.Animal;
 import com.arsen.silchenko.testexerciseforpumb.specificationprovider.SpecificationBuilder;
 import com.arsen.silchenko.testexerciseforpumb.specificationprovider.SpecificationProviderManager;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class AnimalSpecificationBuilder implements SpecificationBuilder<Animal> {
     private static final String TYPE = "type";
     private static final String SEX = "sex";
     private static final String CATEGORY = "category";
     private final SpecificationProviderManager<Animal> bookSpecificationProviderManager;
-
-    @Autowired
-    public AnimalSpecificationBuilder(SpecificationProviderManager<Animal> bookSpecificationProviderManager) {
-        this.bookSpecificationProviderManager = bookSpecificationProviderManager;
-    }
 
     @Override
     public Specification<Animal> build(AnimalSearchParametersDto searchParametersDto) {

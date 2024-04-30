@@ -7,24 +7,18 @@ import com.arsen.silchenko.testexerciseforpumb.model.Animal;
 import com.arsen.silchenko.testexerciseforpumb.repository.AnimalRepository;
 import com.arsen.silchenko.testexerciseforpumb.service.AnimalService;
 import com.arsen.silchenko.testexerciseforpumb.specificationprovider.animal.AnimalSpecificationBuilder;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class AnimalServiceImpl implements AnimalService {
     private final AnimalRepository animalRepository;
     private final AnimalMapper animalMapper;
     private final AnimalSpecificationBuilder animalSpecificationBuilder;
-
-    @Autowired
-    public AnimalServiceImpl(AnimalRepository animalRepository, AnimalMapper animalMapper, AnimalSpecificationBuilder animalSpecificationBuilder) {
-        this.animalRepository = animalRepository;
-        this.animalMapper = animalMapper;
-        this.animalSpecificationBuilder = animalSpecificationBuilder;
-    }
 
     @Override
     public List<AnimalDto> search(AnimalSearchParametersDto searchParameters, Sort sort) {

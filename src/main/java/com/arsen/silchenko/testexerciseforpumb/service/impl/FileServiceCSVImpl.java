@@ -8,6 +8,7 @@ import com.arsen.silchenko.testexerciseforpumb.represantation.AnimalCSV;
 import com.arsen.silchenko.testexerciseforpumb.service.FileService;
 import com.opencsv.bean.CsvToBeanBuilder;
 import com.opencsv.exceptions.CsvRuntimeException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,15 +18,10 @@ import java.io.InputStreamReader;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class FileServiceCSVImpl implements FileService {
     private final AnimalMapper animalMapper;
     private final AnimalRepository animalRepository;
-
-    @Autowired
-    public FileServiceCSVImpl(AnimalMapper animalMapper, AnimalRepository animalRepository) {
-        this.animalMapper = animalMapper;
-        this.animalRepository = animalRepository;
-    }
 
     @Override
     public List<AnimalDto> upload(MultipartFile file) {

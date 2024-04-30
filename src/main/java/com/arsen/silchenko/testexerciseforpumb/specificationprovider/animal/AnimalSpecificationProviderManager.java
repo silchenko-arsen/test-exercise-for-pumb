@@ -4,18 +4,14 @@ import com.arsen.silchenko.testexerciseforpumb.model.Animal;
 
 import com.arsen.silchenko.testexerciseforpumb.specificationprovider.SpecificationProvider;
 import com.arsen.silchenko.testexerciseforpumb.specificationprovider.SpecificationProviderManager;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
+@RequiredArgsConstructor
 public class AnimalSpecificationProviderManager implements SpecificationProviderManager<Animal> {
     private final List<SpecificationProvider<Animal>> animalSpecificationProviders;
-
-    @Autowired
-    public AnimalSpecificationProviderManager(List<SpecificationProvider<Animal>> animalSpecificationProviders) {
-        this.animalSpecificationProviders = animalSpecificationProviders;
-    }
 
     @Override
     public SpecificationProvider<Animal> getSpecificationProvider(String key) {

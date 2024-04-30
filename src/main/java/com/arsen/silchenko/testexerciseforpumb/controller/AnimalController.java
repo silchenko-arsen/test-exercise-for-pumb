@@ -6,7 +6,7 @@ import com.arsen.silchenko.testexerciseforpumb.service.AnimalService;
 import java.util.List;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,13 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/animals")
 @Tag(name = "Animal management", description = "Endpoints for managing animals")
+@RequiredArgsConstructor
 public class AnimalController {
     private final AnimalService animalService;
-
-    @Autowired
-    public AnimalController(AnimalService animalService) {
-        this.animalService = animalService;
-    }
 
     @GetMapping("/search")
     @Operation(summary = "Search animals by parameters",
