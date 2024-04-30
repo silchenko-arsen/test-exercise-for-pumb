@@ -27,16 +27,6 @@ public class AnimalXML {
         return name;
     }
 
-    public AnimalXML() {
-    }
-
-    public AnimalXML(String name, String type, String sex, Integer weight, Integer cost) {
-        this.name = name;
-        this.type = type;
-        this.sex = sex;
-        this.weight = weight;
-        this.cost = cost;
-    }
 
     public String getType() {
         return type;

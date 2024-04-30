@@ -8,7 +8,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Positive;
 
 @Entity
 @Table(name = "animals")
@@ -107,8 +106,6 @@ public class Animal {
         }
         return this;
     }
-
-
 
     public enum Type {
         CAT, DOG

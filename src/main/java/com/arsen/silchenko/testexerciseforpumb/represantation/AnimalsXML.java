@@ -10,9 +10,6 @@ public class AnimalsXML {
     @XmlElement(name = "animal")
     private List<AnimalXML> animalXMLList;
 
-    public AnimalsXML() {
-    }
-
     public List<AnimalXML> getAnimalXMLList() {
         return animalXMLList;
     }

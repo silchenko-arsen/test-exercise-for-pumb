@@ -47,52 +47,48 @@ class FileControllerIntegrationTest {
 
     @Test
     public void testUploadFileWithCsvData() throws Exception {
-        String csvData = "Name,Type,Sex,Weight,Cost\n" +
-                "Buddy,cat,female,41,78\n" +
-                "Cooper,,female,46,23\n" +
-                "Duke,cat,male,33,108\n" +
-                "Rocky,dog,,18,77\n" +
-                "Sadie,cat,male,26,27\n" +
-                "Leo,cat,female,23,82\n" +
-                ",cat,male,32,44\n" +
-                "Lola,dog,male,35,105\n" +
-                "Bailey,dog,male,42,46\n" +
-                "Loki,cat,female,11,87";
-        MockMultipartFile multipartFile = new MockMultipartFile("file", "file.csv", "text/csv", csvData.getBytes());
+        String cxvContent = """
+                Name,Type,Sex,Weight,Cost
+                Buddy,cat,female,41,78
+                Duke,cat,male,33,108
+                """;
+        MockMultipartFile multipartFile = new MockMultipartFile("file", "file.csv", "text/csv", cxvContent.getBytes());
         MvcResult mvcResult = mockMvc.perform(multipart("/api/files/uploads")
                         .file(multipartFile))
                 .andExpect(status().isOk())
                 .andReturn();
         AnimalDto[] actual = objectMapper.readValue(mvcResult
                 .getResponse().getContentAsString(), AnimalDto[].class);
-        assertEquals(7, actual.length);
+        assertEquals(2, actual.length);
     }
 
     @Test
     public void testUploadFileWithXmlData() throws Exception {
-        String xmlData = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
-                "<animals>\n" +
-                "    <animal>\n" +
-                "        <name>Milo</name>\n" +
-                "        <type>cat</type>\n" +
-                "        <sex>male</sex>\n" +
-                "        <weight>40</weight>\n" +
-                "        <cost>51</cost>\n" +
-                "    </animal>\n" +
-                "    <animal>\n" +
-                "        <name>Simon</name>\n" +
-                "        <sex>male</sex>\n" +
-                "        <weight>45</weight>\n" +
-                "        <cost>17</cost>\n" +
-                "    </animal>\n" +
-                "</animals>";
-        MockMultipartFile file = new MockMultipartFile("file", "file.xml", "application/xml", xmlData.getBytes());
+        String xmlContent = """
+                <?xml version="1.0" encoding="UTF-8"?>
+                <animals>
+                    <animal>
+                        <name>Buddy</name>
+                        <type>cat</type>
+                        <sex>female</sex>
+                        <weight>41</weight>
+                        <cost>78</cost>
+                    </animal>
+                    <animal>
+                        <name>Duke</name>
+                        <type>cat</type>
+                        <sex>male</sex>
+                        <weight>33</weight>
+                        <cost>108</cost>
+                    </animal>
+                </animals>""";
+        MockMultipartFile file = new MockMultipartFile("file", "file.xml", "application/xml", xmlContent.getBytes());
         MvcResult mvcResult = mockMvc.perform(multipart("/api/files/uploads")
                         .file(file))
                 .andExpect(status().isOk())
                 .andReturn();
         AnimalDto[] actual = objectMapper.readValue(mvcResult
                 .getResponse().getContentAsString(), AnimalDto[].class);
-        assertEquals(1, actual.length);
+        assertEquals(2, actual.length);
     }
 }

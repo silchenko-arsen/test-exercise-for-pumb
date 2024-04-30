@@ -5,6 +5,7 @@ import com.arsen.silchenko.testexerciseforpumb.exception.XmlParsingException;
 import com.arsen.silchenko.testexerciseforpumb.mapper.AnimalMapper;
 import com.arsen.silchenko.testexerciseforpumb.model.Animal;
 import com.arsen.silchenko.testexerciseforpumb.repository.AnimalRepository;
+import com.arsen.silchenko.testexerciseforpumb.represantation.AnimalCSV;
 import com.arsen.silchenko.testexerciseforpumb.represantation.AnimalXML;
 import com.arsen.silchenko.testexerciseforpumb.represantation.AnimalsXML;
 import com.arsen.silchenko.testexerciseforpumb.service.FileService;
@@ -36,7 +37,6 @@ public class FileServiceXMLImpl implements FileService {
             JAXBContext jaxbContext = JAXBContext.newInstance(AnimalsXML.class);
             Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
             animalsXML = (AnimalsXML) unmarshaller.unmarshal(reader);
-
         } catch (JAXBException e) {
             throw new XmlParsingException("Error parsing XML: " + file.getOriginalFilename(), e);
         } catch (IOException e) {
@@ -57,6 +57,7 @@ public class FileServiceXMLImpl implements FileService {
         return animal.getName() != null && !animal.getName().isEmpty() &&
                 animal.getType() != null && !animal.getType().isEmpty() &&
                 animal.getSex() != null && !animal.getSex().isEmpty() &&
-                animal.getWeight() != null && animal.getCost() != null;
+                animal.getWeight() != null && animal.getWeight() >= 0 &&
+                animal.getCost() != null && animal.getCost() >= 0;
     }
 }

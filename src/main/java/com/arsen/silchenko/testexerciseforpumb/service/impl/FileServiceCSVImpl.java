@@ -29,9 +29,9 @@ public class FileServiceCSVImpl implements FileService {
 
     @Override
     public List<AnimalDto> upload(MultipartFile file) {
-        List<AnimalCSV> animalCSVRepresentations;
+        List<AnimalCSV> animalCSVs;
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
-            animalCSVRepresentations = new CsvToBeanBuilder<AnimalCSV>(reader)
+            animalCSVs = new CsvToBeanBuilder<AnimalCSV>(reader)
                     .withType(AnimalCSV.class)
                     .withIgnoreLeadingWhiteSpace(true)
                     .withIgnoreEmptyLine(true)
@@ -40,7 +40,7 @@ public class FileServiceCSVImpl implements FileService {
         }  catch (IOException e) {
             throw new CsvRuntimeException("Error reading file: " + file.getOriginalFilename(), e);
         }
-        List<Animal> animals = animalCSVRepresentations.stream()
+        List<Animal> animals = animalCSVs.stream()
                 .filter(this::isValidAnimal)
                 .map(animalMapper::toModel)
                 .map(Animal::setCategory)

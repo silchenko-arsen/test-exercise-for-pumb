@@ -18,17 +18,6 @@ public class AnimalCSV {
     @CsvBindByName(column = "Cost")
     private Integer cost;
 
-    public AnimalCSV() {
-    }
-
-    public AnimalCSV(String name, String type, String sex, Integer weight, Integer cost) {
-        this.name = name;
-        this.type = type;
-        this.sex = sex;
-        this.weight = weight;
-        this.cost = cost;
-    }
-
     public String getName() {
         return name;
     }
