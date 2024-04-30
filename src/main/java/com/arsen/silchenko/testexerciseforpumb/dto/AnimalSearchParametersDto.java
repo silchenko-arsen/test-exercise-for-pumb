@@ -1,2 +1,7 @@
-package com.arsen.silchenko.testexerciseforpumb.specificationprovider;public record AnimalSearchParametersDto() {
+package com.arsen.silchenko.testexerciseforpumb.dto;
+
+public record AnimalSearchParametersDto(String[] types,
+                                        String[] sexes,
+                                        String[] categories) {
+
 }

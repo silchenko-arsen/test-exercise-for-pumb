@@ -1,23 +1,22 @@
 package com.arsen.silchenko.testexerciseforpumb.specificationprovider.animal;
 
-import com.example.model.Book;
-import com.example.specificationprovider.SpecificationProvider;
+import com.arsen.silchenko.testexerciseforpumb.model.Animal;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
-
+import com.arsen.silchenko.testexerciseforpumb.specificationprovider.SpecificationProvider;
 import java.util.Arrays;
 
 @Component
-public class CoverImageSpecificationProvider implements SpecificationProvider<Book> {
-    private static final String COVER_IMAGE = "coverImage";
+public class CategorySpecificationProvider implements SpecificationProvider<Animal> {
+    private static final String CATEGORY = "category";
 
     @Override
     public String getKey() {
-        return COVER_IMAGE;
+        return CATEGORY;
     }
 
-    public Specification<Book> getSpecification(String[] params) {
+    public Specification<Animal> getSpecification(String[] params) {
         return (root, query, criteriaBuilder) -> root
-                .get(COVER_IMAGE).in(Arrays.stream(params).toArray());
+                .get(CATEGORY).in(Arrays.stream(params).toArray());
     }
 }

@@ -1,4 +1,4 @@
-package com.example.config;
+package com.arsen.silchenko.testexerciseforpumb.config;
 
 import org.testcontainers.containers.PostgreSQLContainer;
 

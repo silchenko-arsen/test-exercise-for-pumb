@@ -1,11 +1,10 @@
-package com.silchenko.arsen.testpumbproject.dto;
+package com.arsen.silchenko.testexerciseforpumb.dto;
 
-import com.silchenko.arsen.testpumbproject.model.Animal;
+import com.arsen.silchenko.testexerciseforpumb.model.Animal;
 
 public record AnimalDto(String name,
-                        String type,
-
-                        String gender,
+                        Animal.Type type,
+                        Animal.Sex sex,
                         Integer weight,
                         Integer cost,
                         Animal.Category category) { }

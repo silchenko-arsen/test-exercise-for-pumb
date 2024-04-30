@@ -1,2 +1,10 @@
-package com.arsen.silchenko.testexerciseforpumb.exception;public class XmlParsingException {
+package com.arsen.silchenko.testexerciseforpumb.exception;
+
+import jakarta.xml.bind.JAXBException;
+
+public class XmlParsingException extends RuntimeException {
+
+    public XmlParsingException(String message, Throwable cause) {
+        super(message, cause);
+    }
 }

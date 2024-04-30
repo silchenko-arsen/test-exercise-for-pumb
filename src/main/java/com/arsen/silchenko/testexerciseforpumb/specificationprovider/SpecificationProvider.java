@@ -1,4 +1,4 @@
-package com.example.specificationprovider;
+package com.arsen.silchenko.testexerciseforpumb.specificationprovider;
 
 import org.springframework.data.jpa.domain.Specification;
 

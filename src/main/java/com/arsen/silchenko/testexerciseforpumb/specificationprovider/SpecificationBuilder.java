@@ -1,8 +1,8 @@
-package com.example.specificationprovider;
+package com.arsen.silchenko.testexerciseforpumb.specificationprovider;
 
-import com.example.dto.book.BookSearchParametersDto;
+import com.arsen.silchenko.testexerciseforpumb.dto.AnimalSearchParametersDto;
 import org.springframework.data.jpa.domain.Specification;
 
 public interface SpecificationBuilder<T> {
-    Specification<T> build(BookSearchParametersDto bookSearchParametersDto);
+    Specification<T> build(AnimalSearchParametersDto animalSearchParametersDto);
 }

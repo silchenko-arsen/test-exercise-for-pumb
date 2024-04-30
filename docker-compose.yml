@@ -21,7 +21,7 @@ services:
     depends_on:
       - postgresdb
     restart: on-failure
-    image: online-book-shop
+    image: test-exercise-pumb
     build: .
     env_file: ./.env
     ports:

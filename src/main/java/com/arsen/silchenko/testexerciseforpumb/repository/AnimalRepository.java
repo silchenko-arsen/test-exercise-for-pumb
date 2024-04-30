@@ -1,7 +1,10 @@
-package com.silchenko.arsen.testpumbproject.repository;
+package com.arsen.silchenko.testexerciseforpumb.repository;
 
-import com.silchenko.arsen.testpumbproject.model.Animal;
+import com.arsen.silchenko.testexerciseforpumb.model.Animal;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.stereotype.Repository;
 
-public interface AnimalRepository extends JpaRepository<Animal, Long> {
+@Repository
+public interface AnimalRepository extends JpaRepository<Animal, Long>, JpaSpecificationExecutor<Animal> {
 }

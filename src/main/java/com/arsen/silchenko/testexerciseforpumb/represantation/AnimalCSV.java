@@ -1,14 +1,8 @@
 package com.arsen.silchenko.testexerciseforpumb.represantation;
 
 import com.opencsv.bean.CsvBindByName;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
-@NoArgsConstructor
-public class AnimalCSVRepresentation {
+public class AnimalCSV {
     @CsvBindByName(column = "Name")
     private String name;
 
@@ -23,5 +17,56 @@ public class AnimalCSVRepresentation {
 
     @CsvBindByName(column = "Cost")
     private Integer cost;
+
+    public AnimalCSV() {
+    }
+
+    public AnimalCSV(String name, String type, String sex, Integer weight, Integer cost) {
+        this.name = name;
+        this.type = type;
+        this.sex = sex;
+        this.weight = weight;
+        this.cost = cost;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public Integer getWeight() {
+        return weight;
+    }
+
+    public Integer getCost() {
+        return cost;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public void setWeight(Integer weight) {
+        this.weight = weight;
+    }
+
+    public void setCost(Integer cost) {
+        this.cost = cost;
+    }
 }
 

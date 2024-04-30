@@ -1,62 +1,45 @@
 package com.arsen.silchenko.testexerciseforpumb.specificationprovider.animal;
 
-import com.example.dto.book.BookSearchParametersDto;
-import com.example.model.Book;
-import com.example.specificationprovider.SpecificationBuilder;
-import com.example.specificationprovider.SpecificationProviderManager;
-import lombok.RequiredArgsConstructor;
+import com.arsen.silchenko.testexerciseforpumb.dto.AnimalSearchParametersDto;
+import com.arsen.silchenko.testexerciseforpumb.model.Animal;
+import com.arsen.silchenko.testexerciseforpumb.specificationprovider.SpecificationBuilder;
+import com.arsen.silchenko.testexerciseforpumb.specificationprovider.SpecificationProviderManager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
-@RequiredArgsConstructor
 @Component
-public class BookSpecificationBuilder implements SpecificationBuilder<Book> {
-    private static final String AUTHOR = "author";
-    private static final String COVER_IMAGE = "coverImage";
-    private static final String DESCRIPTION = "description";
-    private static final String ISBN = "isbn";
-    private static final String PRICE = "price";
-    private static final String TITLE = "title";
-    private final SpecificationProviderManager<Book> bookSpecificationProviderManager;
+public class AnimalSpecificationBuilder implements SpecificationBuilder<Animal> {
+    private static final String TYPE = "type";
+    private static final String SEX = "sex";
+    private static final String CATEGORY = "category";
+    private final SpecificationProviderManager<Animal> bookSpecificationProviderManager;
+
+    @Autowired
+    public AnimalSpecificationBuilder(SpecificationProviderManager<Animal> bookSpecificationProviderManager) {
+        this.bookSpecificationProviderManager = bookSpecificationProviderManager;
+    }
 
     @Override
-    public Specification<Book> build(BookSearchParametersDto searchParametersDto) {
-        Specification<Book> specification = Specification.where(null);
-        if (searchParametersDto.getTitles() != null
-                && searchParametersDto.getTitles().length > 0) {
+    public Specification<Animal> build(AnimalSearchParametersDto searchParametersDto) {
+        Specification<Animal> specification = Specification.where(null);
+        if (searchParametersDto.types() != null
+                && searchParametersDto.types().length > 0) {
             specification = specification
-                    .and(bookSpecificationProviderManager.getSpecificationProvider(TITLE)
-                    .getSpecification(searchParametersDto.getTitles()));
+                    .and(bookSpecificationProviderManager.getSpecificationProvider(TYPE)
+                    .getSpecification(searchParametersDto.types()));
         }
-        if (searchParametersDto.getAuthors() != null
-                && searchParametersDto.getAuthors().length > 0) {
+        if (searchParametersDto.sexes() != null
+                && searchParametersDto.sexes().length > 0) {
             specification = specification
-                    .and(bookSpecificationProviderManager.getSpecificationProvider(AUTHOR)
-                    .getSpecification(searchParametersDto.getAuthors()));
+                    .and(bookSpecificationProviderManager.getSpecificationProvider(SEX)
+                    .getSpecification(searchParametersDto.sexes()));
         }
-        if (searchParametersDto.getIsbns() != null
-                && searchParametersDto.getIsbns().length > 0) {
+        if (searchParametersDto.categories() != null
+                && searchParametersDto.categories().length > 0) {
             specification = specification
-                    .and(bookSpecificationProviderManager.getSpecificationProvider(ISBN)
-                    .getSpecification(searchParametersDto.getIsbns()));
-        }
-        if (searchParametersDto.getPrices() != null
-                && searchParametersDto.getPrices().length > 0) {
-            specification = specification
-                    .and(bookSpecificationProviderManager.getSpecificationProvider(PRICE)
-                    .getSpecification(searchParametersDto.getPrices()));
-        }
-        if (searchParametersDto.getDescriptions() != null
-                && searchParametersDto.getDescriptions().length > 0) {
-            specification = specification
-                    .and(bookSpecificationProviderManager.getSpecificationProvider(DESCRIPTION)
-                            .getSpecification(searchParametersDto.getDescriptions()));
-        }
-        if (searchParametersDto.getCoverImages() != null
-                && searchParametersDto.getCoverImages().length > 0) {
-            specification = specification
-                    .and(bookSpecificationProviderManager.getSpecificationProvider(COVER_IMAGE)
-                            .getSpecification(searchParametersDto.getCoverImages()));
+                    .and(bookSpecificationProviderManager.getSpecificationProvider(CATEGORY)
+                    .getSpecification(searchParametersDto.categories()));
         }
         return specification;
     }
