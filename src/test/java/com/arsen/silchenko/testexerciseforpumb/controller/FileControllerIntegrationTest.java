@@ -46,7 +46,7 @@ class FileControllerIntegrationTest {
     }
 
     @Test
-    public void testUploadFileWithCsvData() throws Exception {
+    public void testUploadFileWithCsvValidData() throws Exception {
         String cxvContent = """
                 Name,Type,Sex,Weight,Cost
                 Buddy,cat,female,41,78
@@ -63,7 +63,7 @@ class FileControllerIntegrationTest {
     }
 
     @Test
-    public void testUploadFileWithXmlData() throws Exception {
+    public void testUploadFileWithXmlValidData() throws Exception {
         String xmlContent = """
                 <?xml version="1.0" encoding="UTF-8"?>
                 <animals>
@@ -97,7 +97,7 @@ class FileControllerIntegrationTest {
         String cxvContent = """
                 Name,Type,Sex,Weight,Cost
                 Buddy,,female,41,78
-                Duke,cat,male,33,108
+                Duke,cat,male,33,-108
                 """;
         MockMultipartFile multipartFile = new MockMultipartFile("file", "file.csv", "text/csv", cxvContent.getBytes());
         MvcResult mvcResult = mockMvc.perform(multipart("/api/files/uploads")
@@ -106,7 +106,7 @@ class FileControllerIntegrationTest {
                 .andReturn();
         AnimalDto[] actual = objectMapper.readValue(mvcResult
                 .getResponse().getContentAsString(), AnimalDto[].class);
-        assertEquals(1, actual.length);
+        assertEquals(0, actual.length);
     }
 
     @Test
@@ -125,7 +125,7 @@ class FileControllerIntegrationTest {
                         <type>cat</type>
                         <sex>male</sex>
                         <weight>33</weight>
-                        <cost>108</cost>
+                        <cost>-108</cost>
                     </animal>
                 </animals>""";
         MockMultipartFile file = new MockMultipartFile("file", "file.xml", "application/xml", xmlContent.getBytes());
@@ -135,6 +135,6 @@ class FileControllerIntegrationTest {
                 .andReturn();
         AnimalDto[] actual = objectMapper.readValue(mvcResult
                 .getResponse().getContentAsString(), AnimalDto[].class);
-        assertEquals(1, actual.length);
+        assertEquals(0, actual.length);
     }
 }

@@ -1,4 +1,4 @@
-package com.arsen.silchenko.testexerciseforpumb.service.impl;
+package com.arsen.silchenko.testexerciseforpumb.service;
 
 
 import com.arsen.silchenko.testexerciseforpumb.dto.AnimalDto;
@@ -7,6 +7,7 @@ import com.arsen.silchenko.testexerciseforpumb.model.Animal;
 import com.arsen.silchenko.testexerciseforpumb.repository.AnimalRepository;
 import com.arsen.silchenko.testexerciseforpumb.represantation.AnimalCSV;
 import com.arsen.silchenko.testexerciseforpumb.represantation.AnimalXML;
+import com.arsen.silchenko.testexerciseforpumb.service.impl.FileServiceXMLImpl;
 import jakarta.xml.bind.JAXBException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -40,7 +41,7 @@ class FileServiceXMLImplTest {
     private FileServiceXMLImpl fileService;
 
     @Test
-    void testUpload_ValidData() {
+    void testUploadValidData() {
         String xmlContent = """
                 <?xml version="1.0" encoding="UTF-8"?>
                 <animals>
@@ -76,7 +77,7 @@ class FileServiceXMLImplTest {
     }
 
     @Test
-    void testUpload_InvalidData() {
+    void testUploadInvalidData() {
         String xmlContent = """
                 <?xml version="1.0" encoding="UTF-8"?>
                 <animals>

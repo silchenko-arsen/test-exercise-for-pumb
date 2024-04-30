@@ -1,10 +1,11 @@
-package com.arsen.silchenko.testexerciseforpumb.service.impl;
+package com.arsen.silchenko.testexerciseforpumb.service;
 
 import com.arsen.silchenko.testexerciseforpumb.dto.AnimalDto;
 import com.arsen.silchenko.testexerciseforpumb.mapper.AnimalMapper;
 import com.arsen.silchenko.testexerciseforpumb.model.Animal;
 import com.arsen.silchenko.testexerciseforpumb.repository.AnimalRepository;
 import com.arsen.silchenko.testexerciseforpumb.represantation.AnimalCSV;
+import com.arsen.silchenko.testexerciseforpumb.service.impl.FileServiceCSVImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -35,7 +36,7 @@ public class FileServiceCSVImplTest {
     private FileServiceCSVImpl fileService;
 
     @Test
-    void testUpload_ValidData() {
+    void testUploadValidData() {
         String csvContent = """
                 Name,Type,Sex,Weight,Cost
                 Buddy,cat,female,41,78

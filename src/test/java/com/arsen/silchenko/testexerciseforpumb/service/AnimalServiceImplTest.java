@@ -1,10 +1,11 @@
-package com.arsen.silchenko.testexerciseforpumb.service.impl;
+package com.arsen.silchenko.testexerciseforpumb.service;
 
 import com.arsen.silchenko.testexerciseforpumb.dto.AnimalDto;
 import com.arsen.silchenko.testexerciseforpumb.dto.AnimalSearchParametersDto;
 import com.arsen.silchenko.testexerciseforpumb.mapper.AnimalMapper;
 import com.arsen.silchenko.testexerciseforpumb.model.Animal;
 import com.arsen.silchenko.testexerciseforpumb.repository.AnimalRepository;
+import com.arsen.silchenko.testexerciseforpumb.service.impl.AnimalServiceImpl;
 import com.arsen.silchenko.testexerciseforpumb.specificationprovider.animal.AnimalSpecificationBuilder;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,7 +19,6 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
